@@ -1,0 +1,249 @@
+html,body,div,ul,li {
+    margin: 0;
+    padding: 0;
+}
+
+ul,li {
+    list-style: none;
+}
+
+h2 {
+    margin: 0;
+}
+
+.xn-wrap img {
+    border: 0;
+}
+
+.xn-wrap {
+    width: 666px;
+    background: #fff;
+    border: 1px solid #dedede;
+}
+
+.xn-tab-head h2 {
+    font-size: 16px;
+    line-height: 44px;
+    padding: 0 10px;
+    font-weight: 400;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #dedede;
+}
+
+.xn-tab-head a {
+    text-decoration: none;
+    color: #0000cc;
+}
+
+.xn-tab-bd {
+    position: relative;
+    width: 666px;
+    /*height: 517px;*/
+}
+
+.icon {
+    background-image: url(imgs/icon.png);
+    background-repeat: no-repeat;
+    display: inline-block;
+
+}
+
+.xn-tab-bd .xn-prev,
+.xn-tab-bd .xn-next {
+    -webkit-transition: all .3s ease;
+    position: absolute;
+    top: 50%;
+    width: 28px;
+    height: 46px;
+    margin-top: -23px;
+    background-color: rgba(0,0,0,0.4);
+    opacity: 0;
+}
+
+.xn-tab-bd .xn-prev {
+    left: 0;
+}
+
+.xn-tab-bd .xn-next {
+    right: 0;
+}
+
+.xn-wrap .hover .xn-prev,
+.xn-wrap .hover .xn-next {
+    opacity: 1;
+}
+
+.xn-wrap .xn-prev .xn-sd {
+    background-position: -70px 10px;
+}
+.xn-wrap .xn-next .xn-sd {
+    background-position: -116px 10px;
+}
+
+.xn-tab-bd .xn-sd {
+    /* display: block;
+    width: 39px;
+    height: 105px;
+    border-radius: 0 4px 4px 0;
+    background-color: #000;
+    opacity: 0.34; */
+    width: 28px;
+    height: 46px;
+}
+
+.xn-tab-contwrap {
+    position: relative;
+    width: 666px;
+    height: 368px;
+    overflow: hidden;
+}
+
+.xn-tab-cont {
+    position: absolute;
+    width: 6012px;
+    /*height: 517px;*/
+}
+
+.xn-tab-cont li {
+    float: left;
+    width: 666px;
+    position: relative;
+    /*height: 517px;*/
+}
+
+.xn-tab-cont span {
+    display: inline-block;
+}
+
+.xn-tab-cont img {
+    width: 100%;
+}
+
+.xn-tab-btnwrap {
+    position: relative;
+    width: 666px;
+    height: 96px;
+    padding-bottom: 10px;
+    margin-top: 9px;
+    overflow: hidden;
+}
+
+.xn-tab-btns {
+    position: absolute;
+    width: 992px;
+    /*height: 87px;*/
+}
+
+.xn-tab-btns li {
+    float: left;
+    width: 148px;
+    height: 96px;
+    margin-right: 10px;
+    cursor: pointer;
+    opacity: 0.6;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+.xn-tab-cont span,
+.xn-tab-btns li span {
+    display: inline-block;
+    width: 100%;
+    height: 20px;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 0 7px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.xn-tab-btns li.cur {
+    opacity: 1;
+}
+
+#xn-btn-arrow {
+    position: absolute;
+    left: 0;
+    width: 144px;
+    height: 92px;
+    border: 3px solid #2c99ff;
+    z-index: 9;
+}
+
+/*小三角*/
+#xn-btn-arrow span {
+    display: block;
+    width: 0;
+    height: 0;
+    margin: -20px 0 0 43px;
+    border-style: solid;
+    border-width: 10px;
+    border-color: transparent transparent #dc4d4a transparent;
+    overflow: hidden;
+}
+
+.xn-arrow-prev,
+.xn-arrow-next {
+    width: 17px;
+    height: 96px;
+    position: absolute;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.4);
+    /*background: url(imgs/xn-arrow.png) no-repeat;*/
+}
+
+.xn-arrow-prev {
+    left: 0;
+    top: 0;
+    background-position: 4px 44px;
+}
+
+.xn-arrow-next {
+    right: 0;
+    top: 0;
+    background-position: -30px 44px;
+}
+
+.xn-tab-ft {
+    position: relative;
+}
+
+ .xn-tab-ft .xn-arrow-prev-disable {
+    background-position: 0 0;
+}
+ 
+.xn-tab-ft .xn-arrow-next-disable {
+    background-position: -34px 0;
+}
+
+.help-text {
+    text-align: right;
+    line-height: 32px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 13px;
+    padding: 0 10px;
+}
+
+.help-text span {
+    color: #999;
+}
+
+.help-text a {
+    color: #0000cc;
+    text-decoration: none;
+}
+/* 
+#webxzy {
+    padding: 50px;
+} */

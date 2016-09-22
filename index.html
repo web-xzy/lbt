@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>百度内搜  我的贴心小内内</title>
+    <!-- BOX-COMPUTING -->
+    <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+<!-- 
+
+  主图 666*368 
+预览图 148*96
+
+-->
+    <div id="webxzy">
+        <div class="xn-wrap">
+        <div class="xn-tab-head border-bottom">
+            <h2><a href="">正在加载…</a></h2>
+        </div>
+        <div class="xn-tab-bd border-bottom">
+            <div class="xn-tab-contwrap">
+                <ul class="xn-tab-cont">
+                     <!--<li>
+                        <a href="javascript:;">
+                            <img src="./imgs/first.png" >
+                            <span>一些文字</span>
+                        </a>
+                    </li>
+                    <li><a href="javascript:;">
+                            <img src="./imgs/first.png" >
+                            <span>一些文字1</span>
+                        </a>
+                    </li>
+                   <li><img src="./imgs/third.png" ></li>
+                    <li><img src="./imgs/fourth.png" ></li>
+                    <li><img src="./imgs/fifth.png" ></li> -->
+                    <!-- <li><img src="./imgs/xn6.png" width="668" height="517"></li>
+                    <li><img src="./imgs/xn7.png" width="668" height="517"></li>
+                    <li><img src="./imgs/xn8.png" width="668" height="517"></li> -->
+                </ul>
+            </div>
+            <a href="javascript:;" class="xn-prev ">
+                <span class="xn-sd icon"></span>
+            </a>
+            <a href="javascript:;" class="xn-next ">
+                <span class="xn-sd icon"></span>
+            </a>
+        </div>
+        <div class="xn-tab-ft">
+            <a href="javascript:;" class="xn-arrow-prev icon"></a>
+            <a href="javascript:;" class="xn-arrow-next icon"></a>
+            <div class="xn-tab-btnwrap border-bottom">
+              <ul class="xn-tab-btns">
+                       <!--<li style="background-image:url(./imgs/first.png)" class="cur"><span>111111111</span></li>
+                    <li style="background-image:url(./imgs/second.png)"><span>2222222222</span></li>
+                    <li style="background-image:url(./imgs/third.png)"><span>3333333333333333333443333434343434</span></li>
+                    <li style="background-image:url(./imgs/fourth.png)"><span>4444444444</span></li>
+                    <li style="background-image:url(./imgs/fifth.png)"><span>555555555555</span></li>-->
+                </ul>
+                <div id="xn-btn-arrow"></div>
+            </div>
+            <div class="help-text">
+                <span>帮助文字：政策流程随时间更新，请关注HR门户内容变化：<a href="javascript:;">duhr.baidu.com</a></span>
+            </div> 
+        </div>
+    </div>
+    </div>
+
+<script src="http://neisou.baidu.com/web/ns/js/require-jquery.js"></script>
+<script type="text/javascript" src="config.js"></script>
+<script type="text/javascript">
+    // 正文
+    var $contBox = $(".xn-tab-cont");
+    var $btnBox = $(".xn-tab-btns");
+    var itemWidth = 158;
+
+    // initDOM
+    var render = function (data) {
+        var items = data.items;
+        var contHTML = '';
+        var btnHTML = '';
+
+        for (var i = 0, len = items.length; i < len; i++) {
+            var href = items[i].url ? items[i].url : 'javascript:;';
+            contHTML += '<li><a href="'+href+'"><img src="'+items[i].img+'"><span>'+items[i].text+'</span></a></li>';
+            if (i===0) {
+                btnHTML += '<li style="background-image:url('+items[i].img+')" class="cur"><span>'+items[i].text+'</span></li>';
+            } else {
+                btnHTML += '<li style="background-image:url('+items[i].img+')"><span>'+items[i].text+'</span></li>';
+            }
+        }
+        $btnBox.css('width', data.items.length*itemWidth);
+        $('.xn-tab-head').find('a').html(data.title);
+        $('.help-text').html(data.helpText+'<a href="http://'+ data.link +'">'+ data.link +'</a>');
+        $contBox.html(contHTML);
+        $btnBox.html(btnHTML);
+    }
+    render(data);
+
+    $(function (){
+        var isCrossDomain = false;
+        var isIframe = false;
+        var appId = "";
+        var locateLeft = 0;
+        // 是否被iframe嵌套
+        if(window.self != window.top){
+            isIframe = true;
+        }
+
+        // 是否跨域
+        if(isIframe){
+            try{
+                var parentWin = parent.window.iframeInterface;
+            }catch(err){
+                isCrossDomain = true;
+            }
+        }
+
+        if(!isCrossDomain){
+            var urlArr = location.search.split(/&|#/);
+            var param = {};
+
+            for (var i = urlArr.length - 1; i >= 0; i--){
+                var tempArr = urlArr[i].split("=");
+                param[tempArr[0]] = tempArr[1];
+            }
+
+            appId = param.id || "";
+        }
+
+        var curIndex = 0;
+        var $btnWp = $(".xn-tab-btnwrap");
+        var $btnLi = $(".xn-tab-btns li");
+        var $conts = $(".xn-tab-cont li");
+        var $btnArrow = $("#xn-btn-arrow");
+        var len = $btnLi.length;
+        var moveLen = data.items.length - 4; // 默认显示4个
+        var curMoveLen = 0;
+
+        // 超出距离 webxzy
+        var extraWidth = $btnBox.width()-$btnWp.width();
+       
+        var invoke = function (num){
+            $btnLi.eq(curIndex).removeClass("cur");
+            $btnLi.eq(num).addClass("cur");
+
+            $contBox.stop().animate({
+                left: "-666"*num
+            });
+            $conts.eq(curIndex).removeClass("cur");
+            $conts.eq(num).addClass("cur");
+
+            curIndex = num;
+        }
+
+        // 列表运动
+        $btnArrow.on("locate", function () {
+            $btnArrow.stop(true, true).animate({
+                    "left": $(".xn-tab-btns li.cur").offset().left - 2
+                    // "left": $(".xn-tab-btns li.cur").position().left - 2 + locateLeft
+                }, "fast");
+        });
+
+        // 点击窗口里的li
+        $(".xn-wrap").on("click", ".xn-tab-btns li", function () {
+            var index = $(this).index();
+
+            if(index != curIndex){
+                invoke(index);
+                $btnArrow.trigger("locate");
+            }
+        });
+
+        // 移入窗口
+        $(".xn-tab-bd").hover(function () {
+            $(this).addClass("hover");
+        }, function () {
+            $(this).removeClass("hover");
+        });
+
+        // 窗口上一页
+        $(".xn-prev").click(function (e){
+            e.preventDefault();
+
+            if(curIndex > 0){
+                $btnLi.eq(curIndex-1).trigger("click");
+
+                if(curIndex < 3){
+                    $(".xn-arrow-prev").trigger("click");
+                }
+            }
+        });
+
+        // 窗口下一页
+        $(".xn-next").click(function (e){
+            e.preventDefault();
+
+            if(curIndex < len){
+                $btnLi.eq(curIndex+1).trigger("click");
+
+                if(curIndex > 4){
+                    $(".xn-arrow-next").trigger("click");
+                }
+            }
+        });
+        var moved = 0;
+
+        // 按钮上一页
+        $(".xn-arrow-prev").click(function (e){
+            e.preventDefault();
+            
+            if (curMoveLen === 0) {
+                return;
+            }
+            curMoveLen--;
+
+            var size = moved < 158 ? moved : 158;
+            moved = moved - size;
+            extraWidth = extraWidth + size;
+
+            $(".xn-arrow-next").removeClass("xn-arrow-next-disable");
+
+            $btnBox.stop(true, true).animate({
+                left: "+=" + size
+            }, function () {
+                // locateLeft = extraWidth;
+                $btnArrow.trigger("locate");
+            });
+
+            if(curMoveLen === 0){
+                // $(this).addClass("xn-arrow-prev-disable");
+            }
+        });
+
+        // 按钮下一页
+        $(".xn-arrow-next").click(function (e) {
+            e.preventDefault();
+            if(curMoveLen === moveLen) {
+                return;
+            }
+            curMoveLen++;
+            // 如果小于158说明是最后一张 只要运行响应的距离即可 最后去掉10个外边距
+            
+            /*
+                extraWidth 记录的是剩余的移动距离
+                     moved 记录的是累计的移动距离 这个值是为了给上一页使用的
+
+            */
+
+            var size = extraWidth < 158 ? extraWidth-10 : 158;
+            extraWidth = extraWidth - size;
+            moved = moved + size;
+            $(".xn-arrow-prev").removeClass("xn-arrow-prev-disable");
+            $btnBox.stop(true, true).animate({
+                left: "-=" + size
+            }, function () {
+                // locateLeft = -moved;
+                $btnArrow.trigger("locate");
+            });
+
+            if(curMoveLen === moveLen){
+                // $(this).addClass("xn-arrow-next-disable");
+            }
+        });
+
+    });
+</script>
+
+<!-- 百度统计 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+   var hostname = document.location.hostname;
+   if (hostname.indexOf("demo.neisou.baidu.com") !=-1 ) {
+      return;
+   }
+   if (hostname.indexOf("beta.neisou.baidu.com") != -1 ) {
+      return;
+   }
+   if (hostname.indexOf("neisou.baidu.com") == -1) {
+      return;
+   }
+
+   var hm = document.createElement("script");
+   hm.src = "//hm.baidu.com/hm.js?97a3ccc58f72810a014745c167a12ffc";
+   hm.setAttribute('async', 'async');
+   var s = document.getElementsByTagName("script")[0]; 
+   s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+</html>
